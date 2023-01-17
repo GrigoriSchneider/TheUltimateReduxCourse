@@ -76,23 +76,73 @@
 // console.log(employee);
 // console.log(newEmployee);
 
+// import { produce } from "immer";
+
+// const employee = {
+//   name: "Harley",
+//   age: 22,
+//   company: "Canada",
+//   city: "Toronto",
+// };
+
+// // const newEmployee = {
+// //   ...employee,
+// //   name: "Martin",
+// //   company: { ...employee.company, city: "Calgary" },
+// // };
+// const newEmployee = produce(employee, (draftState) => {
+//   (draftState.name = "Martin"), (draftState.city = "Calgary");
+// });
+
+// console.log(employee);
+// console.log(newEmployee);
+
+// const numbers = [10, 20, 30, 40];
+
+// // Adding Items
+// const index = numbers.indexOf(30);
+// const addedNumbers = [...numbers.slice(0, index), 50, ...numbers.slice(index)];
+// console.log(addedNumbers);
+
+// // Updating Items
+// const updated = numbers.map((a) => (a === 40 ? 80 : a));
+// console.log(updated);
+
+// // Removing Items
+// const removed = numbers.filter((a) => a !== 30);
+// console.log(removed);
+
+////////////////////////
+// Final Task
 import { produce } from "immer";
 
-const employee = {
-  name: "Harley",
-  age: 22,
-  company: "Canada",
-  city: "Toronto",
+const book = {
+  author: "Robert Kiyosaki",
+  book: {
+    name: "Rich Dad Poor Dad",
+    price: "$8",
+    rating: 4.7,
+  },
 };
 
-// const newEmployee = {
-//   ...employee,
-//   name: "Martin",
-//   company: { ...employee.company, city: "Calgary" },
-// };
-const newEmployee = produce(employee, (draftState) => {
-  (draftState.name = "Martin"), (draftState.city = "Calgary");
+//Task 1
+//Solution with immer
+const updatedBook = produce(book, (draftState) => {
+  (draftState.book.price = "$10"), (draftState.book.rating = 4.8);
 });
+console.log(updatedBook);
 
-console.log(employee);
-console.log(newEmployee);
+// using Spreadoperator
+const taskOneBook = {
+  ...book,
+  book: { ...book.book, price: "$10", rating: 4.8 },
+};
+console.log(taskOneBook);
+
+// Task 2
+const arrayOfBooks = ["Book1", "Book2", "Book3"];
+
+const updatedArrayOfBooks = arrayOfBooks.map((a) =>
+  a === "Book2" ? "Book4" : a
+);
+console.log(updatedArrayOfBooks);
