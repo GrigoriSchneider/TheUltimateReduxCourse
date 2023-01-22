@@ -1,10 +1,11 @@
 import store from "./store/configureStore";
-store.dispatch({
-  type: "apiRequest",
-  payload: {
+import { apiCallBegan } from "./store/api";
+
+store.dispatch(
+  apiCallBegan({
     url: "/tasks",
     onStart: "tasks/apiRequested",
     onSuccess: "tasks/getTasks",
-    onError: "SHOW_ERROR",
-  },
-});
+    onError: "tasks/apiRequestFailed",
+  })
+);
