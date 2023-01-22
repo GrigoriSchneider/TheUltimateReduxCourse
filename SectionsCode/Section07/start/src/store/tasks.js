@@ -36,7 +36,7 @@ const taskSlice = createSlice({
       const index = state.tasks.findIndex(
         (task) => task.id === action.payload.id
       );
-      state.tasks[index].completed = true;
+      state.tasks[index].completed = action.payload.completed;
     },
   },
 });
@@ -68,4 +68,13 @@ export const addNewTask = (task) =>
     method: "POST",
     data: task,
     onSuccess: addTask.type,
+  });
+
+export const updateCompleted = (task) =>
+  apiCallBegan({
+    // /tasks/6
+    url: `${url}/${task.id}`,
+    method: "PATCH",
+    data: task,
+    onSuccess: completedTask.type,
   });
