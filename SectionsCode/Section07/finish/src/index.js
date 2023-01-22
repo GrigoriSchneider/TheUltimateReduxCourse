@@ -1,9 +1,9 @@
 import store from "./store/configureStore";
 import {
-    loadTasks,
-    addNewTask,
-    updateCompleted,
-    deleteTask,
+  loadTasks,
+  addNewTask,
+  updateCompleted,
+  deleteTask,
 } from "./store/tasks";
 
 // const gettingTasks = async () => {
