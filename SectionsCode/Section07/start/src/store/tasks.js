@@ -51,7 +51,7 @@ export const {
 } = taskSlice.actions;
 export default taskSlice.reducer;
 
-// Actions Creators
+// Action Creators
 const url = "/tasks";
 
 export const loadTasks = () =>
@@ -77,4 +77,12 @@ export const updateCompleted = (task) =>
     method: "PATCH",
     data: task,
     onSuccess: completedTask.type,
+  });
+
+export const deleteTask = (task) =>
+  apiCallBegan({
+    // /tasks/6
+    url: `${url}/${task.id}`,
+    method: "DELETE",
+    onSuccess: removeTask.type,
   });

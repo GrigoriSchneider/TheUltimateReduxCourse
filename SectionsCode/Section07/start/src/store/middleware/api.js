@@ -9,9 +9,7 @@ const api =
 
     const { url, method, data, onStart, onSuccess, onError } = action.payload;
 
-    if (onStart) {
-      dispatch({ type: onStart });
-    }
+    if (onStart) dispatch({ type: onStart });
 
     try {
       const response = await axios.request({
@@ -23,7 +21,8 @@ const api =
 
       dispatch({ type: onSuccess, payload: response.data });
     } catch (error) {
-      dispatch({ type: onError, payload: { error: error.message } });
+      if (onError)
+        dispatch({ type: onError, payload: { error: error.message } });
       dispatch({ type: "SHOW_ERROR", payload: { error: error.message } });
     }
   };
